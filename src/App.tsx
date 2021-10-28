@@ -11,10 +11,14 @@ const App: React.FunctionComponent = () => {
       {id: 't4', text: 'Walk the dog'}
   ];
 
+  const todoAddHandler = (text: string) => {
+    console.log('todoAddHandler:', text);
+  }
+
   return (
     <div className="App">
-      <TodoInput />
-      <TodoList items={todos}/>      
+      <TodoInput onAddTodo={todoAddHandler} />
+      <TodoList items={todos} />      
     </div>
   );
 }
