@@ -15,15 +15,21 @@ const App: React.FunctionComponent = () => {
 
   const todoAddHandler = (text: string) => {
     console.log('todoAddHandler:', text);
-    setTodos(previousTodos => 
-      [...previousTodos, {id: Math.random().toString(), text: text}]
-    );
+    setTodos(previousTodos => {
+      return [...previousTodos, {id: Math.random().toString(), text: text}]
+    });
+  }
+
+  const todoDeleteHandler = (id: string) => {
+    setTodos(previousTodos => {
+      return previousTodos.filter(item => (item.id !== id));
+    });
   }
 
   return (
     <div className="App">
       <TodoInput onAddTodo={todoAddHandler} />
-      <TodoList items={todos} />      
+      <TodoList items={todos} onDeleteTodo={todoDeleteHandler} />      
     </div>
   );
 }
